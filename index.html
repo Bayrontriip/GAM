@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #312a2a 0%, #0a0808 25%, #2f3640 75%, #000000 100%);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #272424 0%, #99111d 50%, #2f3640 100%);
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo {
+            max-height: 150px;
+            max-width: 180px;
+            object-fit: contain;
+        }
+        
+        .icons-section {
+            background: linear-gradient(135deg, rgba(58, 54, 54, 0.95) 0%, rgba(22, 16, 16, 0.8) 40%, rgba(47, 54, 64, 0.9) 100%);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-radius: 50px;
+            margin: 20px auto;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .icons-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            gap: 0.5cm;
+        }
+        
+        .icons-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5cm;
+        }
+        
+        .icons-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5cm;
+        }
+        
+        .icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            margin-bottom: 8px;
+            border: 2px solid rgba(255, 71, 87, 0.2);
+        }
+        
+        .icon-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .icon-link img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        .icon-text {
+            font-size: 12px;
+            color: #ffffff;
+            text-align: center;
+            font-weight: 500;
+            margin-top: 4px;
+            line-height: 1.2;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .small-icons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+            margin-left: 15px;
+        }
+        
+        .small-icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            border: 2px solid rgba(255, 71, 87, 0.2);
+        }
+        
+        .small-icon-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .small-icon-link img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 2px solid rgba(255, 71, 87, 0.2);
+        }
+        
+        .search-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-toggle img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+        }
+        
+        .search-input-container {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3), 0 2px 12px rgba(0, 0, 0, 0.2);
+            padding: 5px 20px;
+            width: 280px;
+            border: 2px solid rgba(255, 71, 87, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-input {
+            border: none;
+            outline: none;
+            padding: 12px 0;
+            font-size: 16px;
+            background: transparent;
+            width: 100%;
+            color: #333;
+        }
+        
+        .search-input::placeholder {
+            color: #999;
+        }
+        
+        main {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+        }
+        
+        footer {
+            background: #000000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 15px rgba(255, 71, 87, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background-color: white;
+        }
+        
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+        
+        .carousel-arrow:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+        
+        .carousel-arrow.next {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+        <img src="SURA_diciembre-logoGAM.original.png" alt="Logo GAM" class="logo">
+    </header>
+    
+    <div class="icons-section" id="iconsSection">
+        <div class="icons-container">
+            <div class="icons-left">
+                <a href="#" class="icon-wrapper" title="Biblioteca">
+                    <div class="icon-link">
+                        <img src="icons/BIBLIOTECA.png" alt="Ícono de biblioteca">
+                    </div>
+                    <span class="icon-text">Biblioteca</span>
+                </a>
+                <a href="#" class="icon-wrapper" title="Clases">
+                    <div class="icon-link">
+                        <img src="icons/CLASES.png">
+                    </div>
+                    <span class="icon-text">Clases</span>
+                </a>
+                <a href="https://gam.ticketplus.cl/" class="icon-wrapper" title="Exposiciones">
+                    <div class="icon-link">
+                        <img src="icons/EXPOSICIONES.png" alt="Ícono de exposiciones">
+                    </div>
+                    <span class="icon-text">Exposiciones</span>
+                </a>
+                <a href="https://www.friv.com/" class="icon-wrapper" title="Teatros">
+                    <div class="icon-link">
+                        <img src="icons/TEATROS.png" alt="Ícono de teatros">
+                    </div>
+                    <span class="icon-text">Teatros</span>
+                </a>
+            </div>
+            
+            <div class="icons-right">
+                <a href="#" class="icon-wrapper" title="Música">
+                    <div class="icon-link">
+                        <img src="icons/MUSICA.png" alt="Ícono de música">
+                    </div>
+                    <span class="icon-text">Música</span>
+                </a>
+                <a href="#" class="icon-wrapper" title="Accesibilidad">
+                    <div class="icon-link">
+                        <img src="icons/ACCESIBILIDAD.png" alt="Ícono de accesibilidad">
+                    </div>
+                    <span class="icon-text">Accesibilidad</span>
+                </a>
+                <a href="#" class="icon-wrapper" title="Donaciones">
+                    <div class="icon-link">
+                        <img src="icons/DONACIONES.png" alt="Ícono de donaciones">
+                    </div>
+                    <span class="icon-text">Donaciones</span>
+                </a>
+                <div class="search-container">
+                    <div class="search-input-container" id="searchContainer">
+                        <input type="text" class="search-input" placeholder="¿Qué estás buscando?" id="searchInput">
+                    </div>
+                    <button class="search-toggle" id="searchToggle" title="Buscar">
+                        <img src="icons/LUPA.png" alt="Buscar">
+                    </button>
+                </div>
+                
+                <div class="small-icons-grid">
+                    <a href="UBICACION.html" class="small-icon-link" title="Ubicación">
+                        <img src="icons/UBICACION.png" alt="Ubicación">
+                    </a>
+                    <a href="INFORMACIONES.html" class="small-icon-link" title="Información">
+                        <img src="icons/INFORMACION.png" alt="Información">
+                    </a>
+                    <a href="#" class="small-icon-link" title="Agenda">
+                        <img src="icons/AGENDA.png" alt="Agenda">
+                    </a>
+                    <a href="#" class="small-icon-link" title="Carrito de compras">
+                        <img src="Icons/CARRITO DE COMPRAS.png" alt="Carrito de compras">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <main>
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <div class="carousel-slide">
+                    <img src="carrusel/7.jpg" alt="Imagen del carrusel 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="carrusel/2.jpg" alt="Imagen del carrusel 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="carrusel/2.jpg" alt="Imagen del carrusel 3">
+                </div>
+                <div class="carousel-slide">
+                    <img src="carrusel/3.png" alt="Imagen del carrusel 4">
+                </div>
+                <div class="carousel-slide">
+                    <img src="carrusel/4.jpg" alt="Imagen del carrusel 5">
+                </div>
+                <div class="carousel-slide">
+                    <img src="carrusel/5.jpg" alt="Imagen del carrusel 6">
+                </div>
+                <div class="carousel-slide">
+                    <img src="carrusel/6.jpg" alt="Imagen del carrusel 7">
+                </div>
+            </div>
+            
+            <button class="carousel-arrow prev" onclick="prevSlide()" aria-label="Imagen anterior">❮</button>
+            <button class="carousel-arrow next" onclick="nextSlide()" aria-label="Imagen siguiente">❯</button>
+            
+            <div class="carousel-nav">
+                <span class="carousel-dot active" onclick="currentSlide(1)" aria-label="Ir a imagen 1"></span>
+                <span class="carousel-dot" onclick="currentSlide(2)" aria-label="Ir a imagen 2"></span>
+                <span class="carousel-dot" onclick="currentSlide(3)" aria-label="Ir a imagen 3"></span>
+                <span class="carousel-dot" onclick="currentSlide(4)" aria-label="Ir a imagen 4"></span>
+                <span class="carousel-dot" onclick="currentSlide(5)" aria-label="Ir a imagen 5"></span>
+                <span class="carousel-dot" onclick="currentSlide(6)" aria-label="Ir a imagen 6"></span>
+                <span class="carousel-dot" onclick="currentSlide(7)" aria-label="Ir a imagen 7"></span>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+    </footer>
+    
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const carousel = document.getElementById('carousel');
+        
+        function showSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[index]) {
+                dots[index].classList.add('active');
+            }
+        }
+        
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+        
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+        
+        function currentSlide(index) {
+            if (index >= 1 && index <= slides.length) {
+                currentSlideIndex = index - 1;
+                showSlide(currentSlideIndex);
+            }
+        }
+        
+        let autoSlideInterval = setInterval(nextSlide, 5000);
+        
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        });
+    </script>
+</body>
+</html>
